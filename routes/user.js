@@ -17,7 +17,7 @@ router.get('/:id', async(req, res)=>{
 
 router.post('/', [
     check('name').isLength({min: 3}),
-    check('email').isLength({min: 3})
+    check('mail').isLength({min: 3})
 ],async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -37,7 +37,7 @@ router.post('/', [
 
 router.put('/:id', [
     check('name').isLength({min: 3}),
-    check('email').isLength({min: 3})
+    check('mail').isLength({min: 3})
 ], async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

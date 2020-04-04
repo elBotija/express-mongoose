@@ -101,7 +101,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"company\": \"sa asdraza\",\n\t\"model\": \"peaspe\",\n\t\"year\": \"2009\"\n}\n",
+							"raw": "{\n\t\"companyId\": \"5e87df6f50019b28797bc27b\",\n\t\"model\": \"X1asda\",\n\t\"sold\": false,\n\t\"price\": 3300,\n\t\"year\": \"2009\",\n\t\"extras\": [\"4x4\", \"automatico\"]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -300,7 +300,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"mauro\",\n\t\"lastname\": \"martinez\",\n\t\"mail\": \"mauro@mauro\"\n}\n",
+							"raw": "{\n\t\"name\": \"mauro\",\n    \"lastname\": \"mart\",\n    \"isCustomer\": false,\n    \"mail\": \"mauro@asdasd.com\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -398,6 +398,446 @@
 						"description": "\t"
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "http://localhost:3003/api/cars",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/company/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "por id http://localhost:3003/api/cars Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/company",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Car http://localhost:3003/api/cars",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"BMW\",\n\t\"country\": \"EEUU\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/company/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Car http://localhost:3003/api/cars",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/company/5e8415d25b218734935576f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"company",
+								"5e8415d25b218734935576f2"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				},
+				{
+					"name": "delete Car http://localhost:3003/api/cars Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/company/5e83d738583c9c13f045be43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"company",
+								"5e83d738583c9c13f045be43"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d16ae0b8-fa17-4fa0-abf4-0c87fa6eabf6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8745e8f8-ed8f-4be5-a8f8-b61021ed4397",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "sale",
+			"item": [
+				{
+					"name": "http://localhost:3003/api/cars",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/sale/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"sale",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "por id http://localhost:3003/api/cars Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/sale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Car http://localhost:3003/api/cars",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"BMW\",\n\t\"country\": \"EEUU\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/sale/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"sale",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Car http://localhost:3003/api/cars",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/sale/5e8415d25b218734935576f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"sale",
+								"5e8415d25b218734935576f2"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				},
+				{
+					"name": "delete Car http://localhost:3003/api/cars Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": \"BMW\",\n\t\"model\": \"l33333la\",\n\t\"year\": \"2009\",\n\t\"sold\": true,\n\t\"price\": 2000,\n\t\"extras\": [\"automatic\", \"4x4\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/sale/5e83d738583c9c13f045be43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"sale",
+								"5e83d738583c9c13f045be43"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d16ae0b8-fa17-4fa0-abf4-0c87fa6eabf6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8745e8f8-ed8f-4be5-a8f8-b61021ed4397",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			],
 			"protocolProfileBehavior": {}
