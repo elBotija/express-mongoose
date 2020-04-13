@@ -300,7 +300,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"mauro\",\n    \"lastname\": \"mart\",\n    \"isCustomer\": false,\n    \"mail\": \"mauro@asdasd.com\"\n}\n",
+							"raw": "{\n\t\"name\": \"tatata\",\n    \"lastname\": \"pepepe\",\n    \"mail\": \"pepe@pepe.com\",\n    \"password\": \"!QW#Ee3\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,6 +638,11 @@
 								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYjQ3YTJlMTYzZTY5OTAxOGFjYjciLCJuYW1lIjoicGxvcCIsImlhdCI6MTU4NjczNzEwNH0.RdScDsoPvJcpL7yRVSDZY8rGSKbSzXvfwwNaQv56RVg",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -714,11 +719,16 @@
 								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYjQ3YTJlMTYzZTY5OTAxOGFjYjciLCJuYW1lIjoicGxvcCIsImlhdCI6MTU4NjczNzEwNH0.RdScDsoPvJcpL7yRVSDZY8rGSKbSzXvfwwNaQv56RVg",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"BMW\",\n\t\"country\": \"EEUU\"\n}\n",
+							"raw": "{\n\t\"userId\": \"5e92b47a2e163e699018acb7\",\n\t\"carId\": \"5e93ade14a68126beac4074d\",\n\t\"price\": \"4999.50\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -838,6 +848,49 @@
 							""
 						]
 					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "New Car http://localhost:3003/api/cars Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"pepe@pepe.com\",\n    \"password\": \"!QW#Ee3\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/auth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

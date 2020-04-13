@@ -4,15 +4,18 @@ const Car = require('../models/car')
 const {Company} = require('../models/company')
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/auth')
+const Role = require('../helpers/role')
+const authorize = require('../middleware/role')
 
-router.get('/', async(req, res)=> {
+router.get('/', [auth, authorize([Role.Admin, Role.User, Role.Editor])],async(req, res)=> {
     const cars = await Car
         .find()
         // .populate('company', 'name country')
     res.send(cars)
 })
 
-router.get('/:id', async(req, res)=>{
+router.get('/:id', [auth, authorize([Role.Admin, Role.User, Role.Editor])], async(req, res)=>{
     const car = await Car.findById(req.params.id)
     if(!car) return res.status(404).send('No encontramos un coche con ese Id')
     res.send(car)
@@ -21,7 +24,9 @@ router.get('/:id', async(req, res)=>{
 // Post Modelo de datos embebidos
 router.post('/', [
     check('year').isLength({min: 3}),
-    check('model').isLength({min: 3})
+    check('model').isLength({min: 3}),
+    auth, 
+    authorize([Role.Admin, Role.Editor]),
 ],async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -67,7 +72,9 @@ router.post('/', [
 // })
 
 router.put('/:id', [
-    check('model').isLength({min: 3})
+    check('model').isLength({min: 3}),
+    auth, 
+    authorize([Role.Admin, Role.Editor]),
 ], async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -95,7 +102,7 @@ router.put('/:id', [
 
 })
 
-router.delete('/:id', async(req, res)=>{
+router.delete('/:id', [auth, authorize([Role.Admin, Role.Editor])],async(req, res)=>{
 
     const car = await Car.findByIdAndDelete(req.params.id)
 

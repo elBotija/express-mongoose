@@ -1,15 +1,19 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const express = require('express')
 const User = require('../models/user')
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
+const Role = require('../helpers/role')
+const auth = require('../middleware/auth')
+const authorize = require('../middleware/role')
 
-router.get('/', async(req, res)=> {
+router.get('/', [auth, authorize([Role.Admin, Role.Editor])], async(req, res)=> {
     const users = await User.find()
     res.send(users)
 })
 
-router.get('/:id', async(req, res)=>{
+router.get('/:id', [auth, authorize([Role.Admin, Role.Editor, Role.User])], async(req, res)=>{
     const user = await User.findById(req.params.id)
     if(!user) return res.status(404).send('No encontramos un usuario con ese Id')
     res.send(user)
@@ -17,27 +21,45 @@ router.get('/:id', async(req, res)=>{
 
 router.post('/', [
     check('name').isLength({min: 3}),
-    check('mail').isLength({min: 3})
+    check('mail').isLength({min: 3}),
+    check('password').isLength({min: 3})
 ],async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
 
-    const user = new User({
+
+    let user = await User.findOne({email: req.body.mail})
+    if(user) return res.status(400).send("El usuario ya existe")
+
+    const salt = await bcrypt.genSalt(10)
+    const hashPassword = await bcrypt.hash(req.body.password, salt)
+
+    user = new User({
         name: req.body.name,
         lastname: req.body.lastname,
-        isCustomer: req.body.isCustomer,
+        isCustomer: false,
         mail: req.body.mail,
+        password: hashPassword,
+        role: Role.User
     })
 
     const result = await user.save()
-    res.status(201).send(result)
+
+    const jwtToken = user.generateJWT()
+
+    res.status(201).header('Authorization', jwtToken).send({
+        _id: user._id,
+        name: user.name,
+        mail: user.mail,
+    })
 })
 
 router.put('/:id', [
     check('name').isLength({min: 3}),
-    check('mail').isLength({min: 3})
+    check('mail').isLength({min: 3}),
+    auth, authorize([Role.Admin, Role.Editor])
 ], async(req, res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -63,7 +85,7 @@ router.put('/:id', [
 
 })
 
-router.delete('/:id', async(req, res)=>{
+router.delete('/:id', [auth, authorize([Role.Admin, Role.Editor])], async(req, res)=>{
 
     const user = await User.findByIdAndDelete(req.params.id)
 

@@ -2,24 +2,27 @@ const express = require('express')
 const Sale = require('../models/sale')
 const Car = require('../models/car')
 const User = require('../models/user')
+const auth = require('../middleware/auth')
+const Role = require('../helpers/role')
+const authorize = require('../middleware/role')
 const mongoose = require('mongoose')
 
 const router = express.Router()
 
-router.get('/', async(req, res)=> {
+router.get('/', [auth, authorize(Role.Admin)], async(req, res)=> {
     const sale = await Sale.find()
         .find()
     res.send(sale)
 })
 
-router.get('/:id', async(req, res)=>{
+router.get('/:id', [auth, authorize(Role.Admin, Role.Editor, Role.User)], async(req, res)=>{
     const car = await Car.findById(req.params.id)
     if(!car) return res.status(404).send('No encontramos un coche con ese Id')
     res.send(car)
 })
 
 // Post Modelo de datos embebidos
-router.post('/',async(req, res)=>{
+router.post('/',[auth, authorize(Role.Admin, Role.Editor, Role.User)] ,async(req, res)=>{
   const user = await User.findById(req.body.userId)
   if(!user) return res.status(400).send('El usuario no existe')
   
@@ -68,7 +71,7 @@ router.post('/',async(req, res)=>{
 
 })
 
-router.put('/:id', async(req, res)=>{
+router.put('/:id',[auth, authorize(Role.Admin,)], async(req, res)=>{
 
     const car = await Car.findByIdAndUpdate(req.params.id, {
             company: req.body.company,
@@ -91,7 +94,7 @@ router.put('/:id', async(req, res)=>{
 
 })
 
-router.delete('/:id', async(req, res)=>{
+router.delete('/:id',[auth, authorize(Role.Admin)], async(req, res)=>{
 
     const car = await Car.findByIdAndDelete(req.params.id)
 
